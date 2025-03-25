@@ -3,7 +3,8 @@ import { registerAs } from "@nestjs/config";
 export enum ConfigKeys {
     App = "App",
     Db = "Db",
-    Jwt = "Jwt"
+    Jwt = "Jwt",
+    Encryption = "Encryption"
 }
 
 const AppConfig = registerAs(ConfigKeys.App, () => ({
@@ -12,7 +13,12 @@ const AppConfig = registerAs(ConfigKeys.App, () => ({
 
 const JwtConfig = registerAs(ConfigKeys.Jwt, () => ({
     accessTokenSecret: process.env.ACCESS_TOKEN,
-    refreshTokenSecret: process.env.REFRESH_TOKEN
+    refreshTokenSecret: process.env.REFRESH_TOKEN,
+}))
+
+const EncryptionConfig = registerAs(ConfigKeys.Encryption, () => ({
+    secretKey: process.env.SECRET_KEY,
+    iv: process.env.IV
 }))
 
 const DbConfig = registerAs(ConfigKeys.Db, () => ({
@@ -24,4 +30,4 @@ const DbConfig = registerAs(ConfigKeys.Db, () => ({
 }))
 
 
-export const configurations = [AppConfig, DbConfig, JwtConfig]
+export const configurations = [AppConfig, DbConfig, JwtConfig, EncryptionConfig]
