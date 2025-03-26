@@ -13,14 +13,9 @@ export class InfrastructureService {
   async createAccessToken(payload: TokensPayload) {
     const accessToken = this.jwtService.sign(payload, {
       secret: this.configService.get("jwt.accessTokenSecret"),
-      expiresIn: "30d",
+      expiresIn: this.configService.get("jwt.expire"),
     });
 
-    const refreshToken = this.jwtService.sign(payload, {
-      secret: this.configService.get("jwt.refreshTokenSecret"),
-      expiresIn: "1y",
-    });
-
-    return { accessToken, refreshToken };
+    return accessToken;
   }
 }
