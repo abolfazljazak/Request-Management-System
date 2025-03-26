@@ -1,18 +1,10 @@
-import { Module } from '@nestjs/common';
-import { InfrastructureService } from './infrastructure.service';
-import { JwtService } from '@nestjs/jwt';
-import { ConfigService } from '@nestjs/config';
+import { Module } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import { ConfigService } from "@nestjs/config";
+import { InfrastructureService } from "./infrastructure.service";
 
 @Module({
-    providers: [
-        InfrastructureService,
-        JwtService,
-        ConfigService
-    ],
-    exports: [
-        InfrastructureService,
-        JwtService,
-        ConfigService
-    ]
+  providers: [InfrastructureService, JwtService, ConfigService],
+  exports: [InfrastructureService, JwtService, ConfigService],
 })
-export class InfrastructureModule { }
+export class InfrastructureModule {}
