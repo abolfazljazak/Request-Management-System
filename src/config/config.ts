@@ -5,10 +5,15 @@ export enum ConfigKeys {
   Db = "Db",
   Jwt = "Jwt",
   Encryption = "Encryption",
+  Zippo = "Zippo",
 }
 
 const AppConfig = registerAs(ConfigKeys.App, () => ({
   port: 3000,
+}));
+
+const ZippoConfig = registerAs(ConfigKeys.Zippo, () => ({
+  apiUrl: process.env.ZIPPO_API_URL,
 }));
 
 const JwtConfig = registerAs(ConfigKeys.Jwt, () => ({
@@ -29,4 +34,4 @@ const DbConfig = registerAs(ConfigKeys.Db, () => ({
   database: "auth-otp",
 }));
 
-export const configurations = [AppConfig, DbConfig, JwtConfig, EncryptionConfig];
+export const configurations = [AppConfig, DbConfig, JwtConfig, EncryptionConfig, ZippoConfig];

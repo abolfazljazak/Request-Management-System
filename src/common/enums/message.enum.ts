@@ -15,6 +15,7 @@ export enum NotFoundMessage {
   ResourceNotFound = "Requested resource not found",
   UserNotFound = "User not found",
   DataNotFound = "No data found",
+  PostCodeNotFound = "Post Code not found",
 }
 
 export enum ForbiddenMessage {
@@ -31,4 +32,5 @@ export enum ServerErrorMessage {
   InternalError = "Internal server error",
   DatabaseError = "Database operation failed",
   ServiceUnavailable = "Service temporarily unavailable",
+  FailedFetchCityData = "Failed to fetch city data"
 }
