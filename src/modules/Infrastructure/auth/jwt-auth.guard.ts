@@ -5,22 +5,23 @@ import { UnauthorizedMessage } from "src/common/enums/message.enum";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor() { }
-    async canActivate(context: ExecutionContext): Promise<boolean> {
-        const httpContext = context.switchToHttp();
-        const request: Request = httpContext.getRequest<Request>();
-        const token = this.extractToken(request);
-        return true;
-    }
+  constructor() {}
 
-    protected extractToken(request: Request) {
-        const { authorization } = request.headers;
-        if (!authorization || authorization?.trim() === '')
-            throw new UnauthorizedException(UnauthorizedMessage.NoToken)
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const httpContext = context.switchToHttp();
+    const request: Request = httpContext.getRequest<Request>();
+    const token = this.extractToken(request);
+    return true;
+  }
 
-        const [bearer, token] = authorization.split(' ')
-        if (bearer?.toLowerCase() || !token || isJWT(token))
-            throw new UnauthorizedException(UnauthorizedMessage.InvalidToken)
-        return token
-    }
+  protected extractToken(request: Request) {
+    const { authorization } = request.headers;
+    if (!authorization || authorization?.trim() === "")
+      throw new UnauthorizedException(UnauthorizedMessage.NoToken);
+
+    const [bearer, token] = authorization.split(" ");
+    if (bearer?.toLowerCase() || !token || isJWT(token))
+      throw new UnauthorizedException(UnauthorizedMessage.InvalidToken);
+    return token;
+  }
 }
