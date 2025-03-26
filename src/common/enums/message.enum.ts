@@ -32,5 +32,5 @@ export enum ServerErrorMessage {
   InternalError = "Internal server error",
   DatabaseError = "Database operation failed",
   ServiceUnavailable = "Service temporarily unavailable",
-  FailedFetchCityData = "Failed to fetch city data"
+  FailedFetchCityData = "Failed to fetch city data",
 }

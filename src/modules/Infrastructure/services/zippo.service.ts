@@ -1,10 +1,10 @@
 import { HttpService } from "@nestjs/axios";
 import { HttpException, HttpStatus, Injectable, NotFoundException, Post } from "@nestjs/common";
-import { ZippoResponse } from "../interfaces/zippo.interface";
-import { PostCodeDto } from "../dtos/postcode.dto";
 import { ConfigService } from "@nestjs/config";
 import { firstValueFrom } from "rxjs";
 import { NotFoundMessage, ServerErrorMessage } from "src/common/enums/message.enum";
+import { PostCodeDto } from "../dtos/postcode.dto";
+import { ZippoResponse } from "../interfaces/zippo.interface";
 
 @Injectable()
 export class ZippoService {
