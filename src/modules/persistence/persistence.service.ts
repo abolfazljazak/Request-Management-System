@@ -14,7 +14,7 @@ export class PersistenceService {
   }
 
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
-    const { username, hashPassowrd, postCode } = createUserDto;
+    const { username, hashPassword, postCode } = createUserDto;
 
     const userExists = await this.userExists(username);
     if (userExists) throw new ConflictException(ConflictMessage.UserAlreadyExists);
@@ -22,7 +22,7 @@ export class PersistenceService {
     const user = this.userRepository.create({
       username,
       postCode,
-      password: hashPassowrd,
+      password: hashPassword,
     });
     return this.userRepository.save(user);
   }
