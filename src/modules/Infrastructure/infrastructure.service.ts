@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
-import { TokensPayload } from "./types/palyload";
+import { TokensPayload } from "./types/payload";
 import { PostCodeDto } from "./dtos/postcode.dto";
 import { EncryptionService } from "./services/encryption.service";
 import { ZippoResponse } from "./interfaces/zippo.interface";

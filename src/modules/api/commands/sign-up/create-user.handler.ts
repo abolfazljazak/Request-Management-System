@@ -1,7 +1,7 @@
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
+import { PersistenceService } from "@modules/persistence/persistence.service";
+import { InfrastructureService } from "@modules/Infrastructure/infrastructure.service";
 import { SignUpCommand } from "./create-user.command";
-import { PersistenceService } from "src/modules/persistence/persistence.service";
-import { InfrastructureService } from "src/modules/Infrastructure/infrastructure.service";
 import { SignUpResponseDto } from "../../dtos/user-response.dto";
 
 @CommandHandler(SignUpCommand)

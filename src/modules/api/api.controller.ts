@@ -1,8 +1,6 @@
-import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
-import { SignUpDto } from "./dtos/sign-up.dto";
-import { JwtAuthGuard } from "../Infrastructure/auth/jwt-auth.guard";
+import { Body, Controller, Post } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
-import { SignUpHandler } from "./commands/sign-up/create-user.handler";
+import { SignUpDto } from "./dtos/sign-up.dto";
 import { SignUpCommand } from "./commands/sign-up/create-user.command";
 
 @Controller("api")

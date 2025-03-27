@@ -1,14 +1,16 @@
 import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { TypeOrmDbConfig } from "@config/typeorm.config";
 import { InfrastructureModule } from "../Infrastructure/infrastructure.module";
 import { CustomConfigModule } from "../config/config.module";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { TypeOrmDbConfig } from "src/config/typeorm.config";
 
 @Module({
-  imports: [CustomConfigModule, InfrastructureModule,
+  imports: [
+    CustomConfigModule,
+    InfrastructureModule,
     TypeOrmModule.forRootAsync({
-      useClass: TypeOrmDbConfig
-    })
+      useClass: TypeOrmDbConfig,
+    }),
   ],
   controllers: [],
   providers: [],
