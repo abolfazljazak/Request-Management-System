@@ -18,7 +18,7 @@ const ZippoConfig = registerAs(ConfigKeys.Zippo, () => ({
 
 const JwtConfig = registerAs(ConfigKeys.Jwt, () => ({
   accessTokenSecret: process.env.ACCESS_TOKEN,
-  refreshTokenSecret: process.env.REFRESH_TOKEN,
+  expire: process.env.EXPIRE,
 }));
 
 const EncryptionConfig = registerAs(ConfigKeys.Encryption, () => ({
@@ -27,11 +27,11 @@ const EncryptionConfig = registerAs(ConfigKeys.Encryption, () => ({
 }));
 
 const DbConfig = registerAs(ConfigKeys.Db, () => ({
-  port: 5432,
-  host: "localhost",
-  username: "postgres",
-  password: "abolfazljzk",
-  database: "auth-otp",
+  port: process.env.DB_PORT,
+  host: process.env.DB_HOST,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 }));
 
 export const configurations = [AppConfig, DbConfig, JwtConfig, EncryptionConfig, ZippoConfig];

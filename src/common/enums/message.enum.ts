@@ -24,7 +24,7 @@ export enum ForbiddenMessage {
 }
 
 export enum ConflictMessage {
-  AlreadyExists = "Resource already exists",
+  UserAlreadyExists = "User already exists",
   DuplicateEntry = "Duplicate entry detected",
 }
 
@@ -33,4 +33,12 @@ export enum ServerErrorMessage {
   DatabaseError = "Database operation failed",
   ServiceUnavailable = "Service temporarily unavailable",
   FailedFetchCityData = "Failed to fetch city data",
+}
+
+export enum SuccessMessage {
+  OperationSuccessful = "Operation completed successfully",
+  UserCreated = "User created successfully",
+  DataRetrieved = "Data retrieved successfully",
+  LoginSuccessful = "Login successful",
+  TokenGenerated = "Token generated successfully",
 }
