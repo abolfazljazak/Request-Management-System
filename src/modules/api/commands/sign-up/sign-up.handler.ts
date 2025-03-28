@@ -1,11 +1,11 @@
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { PersistenceService } from "@modules/persistence/persistence.service";
 import { InfrastructureService } from "@modules/Infrastructure/infrastructure.service";
-import { SignUpCommand } from "./create-user.command";
+import { SignUpCommand } from "./sign-up.command";
 import { SignUpResponseDto } from "../../dtos/user-response.dto";
 
 @CommandHandler(SignUpCommand)
-export class SignUpHandler implements ICommandHandler<SignUpCommand> {
+export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
   constructor(
     private readonly persistenceService: PersistenceService,
     private readonly infrastructureService: InfrastructureService,
