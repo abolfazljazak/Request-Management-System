@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
 import { SignUpDto } from "./dtos/sign-up.dto";
-import { SignUpCommand } from "./commands/sign-up/create-user.command";
+import { SignUpCommand } from "./commands/sign-up/sign-up.command";
 
 @Controller("api")
 export class ApiController {

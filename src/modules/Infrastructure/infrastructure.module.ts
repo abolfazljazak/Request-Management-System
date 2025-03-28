@@ -4,6 +4,8 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { HttpModule } from "@nestjs/axios";
 import { InfrastructureService } from "./infrastructure.service";
 import { JwtStrategy } from "./auth/jwt.strategy";
+import { EncryptionService } from "./services/encryption.service";
+import { ZippoService } from "./services/zippo.service";
 
 @Module({
   imports: [
@@ -19,7 +21,21 @@ import { JwtStrategy } from "./auth/jwt.strategy";
       }),
     }),
   ],
-  providers: [InfrastructureService, JwtService, ConfigService, JwtStrategy],
-  exports: [InfrastructureService, JwtService, ConfigService, JwtStrategy],
+  providers: [
+    InfrastructureService,
+    JwtService,
+    ConfigService,
+    JwtStrategy,
+    EncryptionService,
+    ZippoService,
+  ],
+  exports: [
+    InfrastructureService,
+    JwtService,
+    ConfigService,
+    JwtStrategy,
+    EncryptionService,
+    ZippoService,
+  ],
 })
 export class InfrastructureModule {}
