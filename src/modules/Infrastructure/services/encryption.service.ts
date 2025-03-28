@@ -11,7 +11,7 @@ export class EncryptionService {
   private iv: Buffer;
 
   constructor(private readonly configService: ConfigService) {
-    const secretKey = this.configService.get<string>("jwt.secretKey");
+    const secretKey = this.configService.get<string>("Encryption.secretKey");
     const ivHex = this.configService.get<string>("Encryption.iv");
 
     if (!secretKey || !ivHex) {
