@@ -14,9 +14,9 @@ import { ZippoService } from "./services/zippo.service";
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>("jwt.accessTokenSecret"),
+        secret: configService.get<string>("Jwt.accessTokenSecret"),
         signOptions: {
-          expiresIn: configService.get<string>("jwt.expire"),
+          expiresIn: configService.get<string>("Jwt.expire"),
         },
       }),
     }),

@@ -18,7 +18,7 @@ const ZippoConfig = registerAs(ConfigKeys.Zippo, () => ({
 
 const JwtConfig = registerAs(ConfigKeys.Jwt, () => ({
   accessTokenSecret: process.env.ACCESS_TOKEN || 'defaultAccessTokenSecret',
-  expire: process.env.EXPIRE || '3600',
+  expire: process.env.EXPIRE || '1d',
 }));
 
 const EncryptionConfig = registerAs(ConfigKeys.Encryption, () => ({
