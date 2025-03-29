@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { GetUserQuery } from "./get-user.query";
 import { PersistenceService } from "@modules/persistence/persistence.service";
 import { InfrastructureService } from "@modules/Infrastructure/infrastructure.service";
+import { GetUserQuery } from "./get-user.query";
 
 @QueryHandler(GetUserQuery)
 export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {
@@ -10,11 +10,11 @@ export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {
     private readonly infrastructureService: InfrastructureService,
   ) {}
 
-  async execute(query: GetUserQuery): Promise<any> {
+  async execute(query: GetUserQuery) {
     const { id } = query;
     const user = await this.persistenceService.userFindById(id);
-    const postCode = user.postCode
-    const city = this.infrastructureService.getCityData({ postCode })
-    return city
+    const { postCode } = user;
+    const city = this.infrastructureService.getCityData({ postCode });
+    return city;
   }
 }

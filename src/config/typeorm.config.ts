@@ -7,7 +7,7 @@ export class TypeOrmDbConfig implements TypeOrmOptionsFactory {
   constructor(private configService: ConfigService) {}
 
   createTypeOrmOptions(
-    connectionName?: string,
+    connectionName?: string, // eslint-disable-line
   ): Promise<TypeOrmModuleOptions> | TypeOrmModuleOptions {
     return {
       type: "postgres",

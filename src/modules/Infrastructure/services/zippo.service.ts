@@ -1,5 +1,5 @@
 import { HttpService } from "@nestjs/axios";
-import { HttpException, HttpStatus, Injectable, NotFoundException, Post } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, NotFoundException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { firstValueFrom } from "rxjs";
 import { NotFoundMessage, ServerErrorMessage } from "@common/enums/message.enum";

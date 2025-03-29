@@ -1,4 +1,4 @@
 export type TGetUser = {
-    userId: string,
-    username: string
-}
+  userId: string;
+  username: string;
+};

@@ -25,8 +25,8 @@ export class InfrastructureService {
     return accessToken;
   }
 
-  async getCityData(PostCodeDto: PostCodeDto): Promise<ZippoResponse> {
-    return this.zippoService.getCityData(PostCodeDto);
+  async getCityData(postCodeDto: PostCodeDto): Promise<ZippoResponse> {
+    return this.zippoService.getCityData(postCodeDto);
   }
 
   encryptPassword(password: string): string {
