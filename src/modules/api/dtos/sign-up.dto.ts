@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, Length } from "class-validator";
+import { IsNotEmpty, IsString, Length, Matches } from "class-validator";
 
 export class SignUpDto {
   @IsNotEmpty({ message: "username is required" })
@@ -9,6 +9,9 @@ export class SignUpDto {
   @IsNotEmpty({ message: "password is required" })
   @IsString({ message: "password must be a string" })
   @Length(8, 100, { message: "password must be between 8 and 100 characters" })
+  @Matches(/^(?=.*[A-Z])(?=.*\d).{8,}$/, {
+    message: "password must contain at least one uppercase letter and one number",
+  })
   password: string;
 
   @IsNotEmpty({ message: "postCode is required" })
