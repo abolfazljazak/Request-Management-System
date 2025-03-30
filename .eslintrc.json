@@ -10,14 +10,33 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "./",
     "ecmaVersion": 12,
     "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "./tsconfig.json"
+      }
+    }
   },
   "plugins": [
     "@typescript-eslint",
     "prettier"
   ],
   "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "js": "never"
+      }
+    ],
+    "no-useless-constructor": "off",
+    "no-empty-function": "off",
     "prettier/prettier": ["error", {
       "singleQuote": false,
       "tabWidth": 2,
@@ -25,8 +44,9 @@
       "trailingComma": "all",
       "printWidth": 100
     }],
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-shadow": "off",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"],
     "import/prefer-default-export": "off",
     "class-methods-use-this": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off"

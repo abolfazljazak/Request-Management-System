@@ -6,6 +6,6 @@ import { PersistenceService } from "./persistence.service";
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
   providers: [PersistenceService],
-  exports: [PersistenceService, TypeOrmModule]
+  exports: [PersistenceService, TypeOrmModule],
 })
 export class PersistenceModule {}

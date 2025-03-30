@@ -1,17 +1,17 @@
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
-import { CreateUserCommand } from "./create-user.command";
-import { PersistenceService } from "src/modules/persistence/persistence.service";
-import { InfrastructureService } from "src/modules/Infrastructure/infrastructure.service";
-import { SignUpResponseDto } from "../dtos/user-response.dto";
+import { PersistenceService } from "@modules/persistence/persistence.service";
+import { InfrastructureService } from "@modules/Infrastructure/infrastructure.service";
+import { SignUpCommand } from "./sign-up.command";
+import { SignUpResponseDto } from "../../dtos/user-response.dto";
 
-@CommandHandler(CreateUserCommand)
-export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
+@CommandHandler(SignUpCommand)
+export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
   constructor(
     private readonly persistenceService: PersistenceService,
     private readonly infrastructureService: InfrastructureService,
   ) {}
 
-  async execute(command: CreateUserCommand): Promise<SignUpResponseDto> {
+  async execute(command: SignUpCommand): Promise<SignUpResponseDto> {
     const { username, password, postCode } = command;
     const hashPassword = this.infrastructureService.encryptPassword(password);
     const user = await this.persistenceService.createUser({ username, hashPassword, postCode });

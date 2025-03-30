@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
-import { TokensPayload } from "./types/palyload";
+import { TokensPayload } from "./types/payload";
 import { PostCodeDto } from "./dtos/postcode.dto";
 import { EncryptionService } from "./services/encryption.service";
 import { ZippoResponse } from "./interfaces/zippo.interface";
@@ -18,15 +18,15 @@ export class InfrastructureService {
 
   async createAccessToken(payload: TokensPayload) {
     const accessToken = this.jwtService.sign(payload, {
-      secret: this.configService.get("jwt.accessTokenSecret"),
-      expiresIn: this.configService.get("jwt.expire"),
+      secret: this.configService.get("Jwt.accessTokenSecret"),
+      expiresIn: this.configService.get("Jwt.expire"),
     });
 
     return accessToken;
   }
 
-  async getCityData(PostCodeDto: PostCodeDto): Promise<ZippoResponse> {
-    return this.zippoService.getCityData(PostCodeDto);
+  async getCityData(postCodeDto: PostCodeDto): Promise<ZippoResponse> {
+    return this.zippoService.getCityData(postCodeDto);
   }
 
   encryptPassword(password: string): string {
