@@ -2,10 +2,10 @@ import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { TokensPayload } from "./types/payload";
-import { PostCodeDto } from "./dtos/postcode.dto";
 import { EncryptionService } from "./services/encryption.service";
 import { ZippoResponse } from "./interfaces/zippo.interface";
 import { ZippoService } from "./services/zippo.service";
+import { PostCodeDto } from "@modules/api/dtos/post-code.dto";
 
 @Injectable()
 export class InfrastructureService {
@@ -25,8 +25,8 @@ export class InfrastructureService {
     return accessToken;
   }
 
-  async getCityData(postCodeDto: PostCodeDto): Promise<ZippoResponse> {
-    return this.zippoService.getCityData(postCodeDto);
+  async getCityData(postCode: string): Promise<ZippoResponse> {
+    return this.zippoService.getCityData(postCode);
   }
 
   encryptPassword(password: string): string {
