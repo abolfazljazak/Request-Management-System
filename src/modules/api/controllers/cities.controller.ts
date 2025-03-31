@@ -1,15 +1,18 @@
 import { Controller, Get, Param, UseGuards } from "@nestjs/common";
 import { JwtAuthGuard } from "@modules/Infrastructure/auth/jwt-auth.guard";
-import { InfrastructureService } from "@modules/Infrastructure/infrastructure.service";
+import { QueryBus } from "@nestjs/cqrs";
+import { GetCityQuery } from "../queries/cities/get-city/get-city.query";
+import { getUser } from "@common/decorators/user.decorator";
+import { TGetUser } from "../types/get-user.type";
 
 @Controller("api/cities")
 export class CitiesController {
-  constructor(private readonly infrastructureService: InfrastructureService) {}
+  constructor(private readonly queryBus: QueryBus) {}
+
   @Get(":postCode")
   @UseGuards(JwtAuthGuard)
-
-  getCityWithPostCode(@Param("postCode") postCode: string) {
-    return this.infrastructureService.getCityData(postCode);
+  getCityData(@Param("postCode") postCode: string, @getUser() user: TGetUser) {
+    return this.queryBus.execute(new GetCityQuery(user.userId, postCode));
   }
 
   @Get("my-request")
