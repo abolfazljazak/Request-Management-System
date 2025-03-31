@@ -14,6 +14,7 @@ import {
   ApiQuery,
   ApiParam,
 } from "@nestjs/swagger";
+import { Pagination } from "@common/decorators/pagination.decorator";
 
 @ApiTags("Cities")
 @Controller("api/cities")
@@ -32,8 +33,9 @@ export class CitiesController {
   @ApiQuery({ name: "limit", required: false, description: "Number of items per page" })
   @ApiBearerAuth()
   @Get("my-request")
+  @Pagination()
   @UseGuards(JwtAuthGuard)
-  getMyRequest(@getUser() user: TGetUser, @Query() paginationDto: PaginationDto) {
+  getMyRequest(@Query() paginationDto: PaginationDto, @getUser() user: TGetUser) {
     return this.queryBus.execute(new GetMyRequestQuery(user.userId, paginationDto));
   }
 
