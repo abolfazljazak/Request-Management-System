@@ -1,11 +1,4 @@
-import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpException,
-  Logger,
-  HttpStatus,
-} from "@nestjs/common";
+import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from "@nestjs/common";
 import { Request, Response } from "express";
 
 @Catch()
@@ -25,7 +18,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     response.status(status).json({
       statusCode: status,
-      message: message,
+      message,
       timestamp: new Date().toISOString(),
       path: request.url,
     });

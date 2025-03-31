@@ -2,10 +2,6 @@ import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { getUser } from "@common/decorators/user.decorator";
 import { JwtAuthGuard } from "@modules/Infrastructure/auth/jwt-auth.guard";
-import { SignUpDto } from "../dtos/sign-up.dto";
-import { SignUpCommand } from "../commands/sign-up/sign-up.command";
-import { TGetUser } from "../types/get-user.type";
-import { GetUserQuery } from "../queries/users/get-user/get-user.query";
 import {
   ApiTags,
   ApiOperation,
@@ -15,6 +11,10 @@ import {
   ApiConsumes,
 } from "@nestjs/swagger";
 import { SwaggerConsumes } from "@common/enums/swagger-consumes.enum";
+import { SignUpDto } from "../dtos/sign-up.dto";
+import { SignUpCommand } from "../commands/sign-up/sign-up.command";
+import { TGetUser } from "../types/get-user.type";
+import { GetUserQuery } from "../queries/users/get-user/get-user.query";
 
 @ApiTags("Users")
 @Controller("api/users")

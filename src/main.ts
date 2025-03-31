@@ -2,10 +2,9 @@ import { NestFactory } from "@nestjs/core";
 import { ConfigService } from "@nestjs/config";
 import * as dotenv from "dotenv";
 import { ValidationPipe } from "@nestjs/common";
-import { AppModule } from "./modules/app/app.module";
-import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { SwaggerConfigInit } from "@config/swagger.config";
 import { HttpExceptionFilter } from "@modules/api/filters/http-exception.filters";
+import { AppModule } from "./modules/app/app.module";
 
 dotenv.config();
 
@@ -23,7 +22,7 @@ async function bootstrap() {
   );
 
   // swagger config
-  SwaggerConfigInit(app)
+  SwaggerConfigInit(app);
 
   // exception filter
   app.useGlobalFilters(new HttpExceptionFilter());

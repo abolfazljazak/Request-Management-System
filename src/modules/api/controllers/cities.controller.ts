@@ -2,9 +2,6 @@ import { Controller, Get, Param, Query, UseGuards } from "@nestjs/common";
 import { JwtAuthGuard } from "@modules/Infrastructure/auth/jwt-auth.guard";
 import { QueryBus } from "@nestjs/cqrs";
 import { getUser } from "@common/decorators/user.decorator";
-import { GetCityQuery } from "../queries/cities/get-city/get-city.query";
-import { TGetUser } from "../types/get-user.type";
-import { GetMyRequestQuery } from "../queries/cities/get-my-request/get-my-request.query";
 import { PaginationDto } from "@common/dtos/pagination.dto";
 import {
   ApiTags,
@@ -15,6 +12,9 @@ import {
   ApiParam,
 } from "@nestjs/swagger";
 import { Pagination } from "@common/decorators/pagination.decorator";
+import { GetCityQuery } from "../queries/cities/get-city/get-city.query";
+import { TGetUser } from "../types/get-user.type";
+import { GetMyRequestQuery } from "../queries/cities/get-my-request/get-my-request.query";
 
 @ApiTags("Cities")
 @Controller("api/cities")

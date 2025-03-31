@@ -4,17 +4,17 @@ import { SecuritySchemeObject } from "@nestjs/swagger/dist/interfaces/open-api-s
 
 export function SwaggerConfigInit(app: INestApplication) {
   const document = new DocumentBuilder()
-  .setTitle("User Management System")
-  .setDescription("User Management System API")
-  .setVersion("v0.0.1")
-  .addBearerAuth()
-  .build();
-  
+    .setTitle("User Management System")
+    .setDescription("User Management System API")
+    .setVersion("v0.0.1")
+    .addBearerAuth()
+    .build();
+
   const swaggerDocument = SwaggerModule.createDocument(app, document);
   SwaggerModule.setup("/swagger", app, swaggerDocument);
 }
 
-function SwaggerAuthConfig(): SecuritySchemeObject {
+function SwaggerAuthConfig(): SecuritySchemeObject { // eslint-disable-line
   return {
     type: "http",
     bearerFormat: "JWT",
