@@ -1,8 +1,8 @@
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { PersistenceService } from "@modules/persistence/persistence.service";
 import { InfrastructureService } from "@modules/Infrastructure/infrastructure.service";
-import { SignUpCommand } from "./sign-up.command";
 import { TSignUpResponse } from "@modules/api/types/sign-up-response.type";
+import { SignUpCommand } from "./sign-up.command";
 
 @CommandHandler(SignUpCommand)
 export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
@@ -19,7 +19,7 @@ export class SignUpCommandHandler implements ICommandHandler<SignUpCommand> {
       sub: user.id,
       username: user.username,
     });
-    const signUpResponse:  TSignUpResponse = {
+    const signUpResponse: TSignUpResponse = {
       user: { id: user.id, username: user.username },
       accessToken,
     };

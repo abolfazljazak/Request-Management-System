@@ -6,6 +6,8 @@ import { UserEntity } from "./entities/user.entity";
 import { CreateUserDto } from "./dtos/create-user.dto";
 import { UserRequestEntity } from "./entities/user-request.entity";
 import { TResponseData } from "./dtos/update-user-request.type";
+import { PaginationDto } from "@common/dtos/pagination.dto";
+import { paginationGenerator, paginationSolver } from "@common/utils/pagination.util";
 
 @Injectable()
 export class PersistenceService {
@@ -14,8 +16,7 @@ export class PersistenceService {
     private readonly userRepository: Repository<UserEntity>,
     @InjectRepository(UserRequestEntity)
     private readonly userRequestRepository: Repository<UserRequestEntity>,
-
-    ) {}
+  ) {}
 
   async userExists(username: string): Promise<UserEntity | null> {
     return this.userRepository.findOne({ where: { username } });
@@ -46,7 +47,11 @@ export class PersistenceService {
     return user;
   }
 
-  async createUserRequest(data: { userId: string; requestType: string; postCode?: string }) {
+  async createUserRequest(data: {
+    userId: string;
+    requestType: string;
+    postCode?: string;
+  }): Promise<UserRequestEntity> {
     const request = this.userRequestRepository.create(data);
     return this.userRequestRepository.save(request);
   }
@@ -55,7 +60,20 @@ export class PersistenceService {
     return this.userRequestRepository.update(id, { responseData });
   }
 
-  async getUserRequests(userId: string) {
-    return this.userRequestRepository.find({ where: { userId } });
+  async getUserRequests(
+    userId: string,
+    paginationDto: PaginationDto,
+  ) {
+    const { limit, page, skip } = paginationSolver(paginationDto);
+    const [userRequests, count] = await this.userRequestRepository.findAndCount({
+      where: { userId },
+      skip,
+      take: limit,
+    });
+
+    return {
+      pagination: paginationGenerator(count, page, limit),
+      userRequests,
+    };
   }
 }

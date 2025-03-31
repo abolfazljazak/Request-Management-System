@@ -1,8 +1,8 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { PersistenceService } from "@modules/persistence/persistence.service";
 import { InfrastructureService } from "@modules/Infrastructure/infrastructure.service";
-import { GetCityQuery } from "./get-city.query";
 import { TGetCityResponse } from "@modules/api/types/get-city-response.type";
+import { GetCityQuery } from "./get-city.query";
 
 @QueryHandler(GetCityQuery)
 export class GetCityQueryHandler implements IQueryHandler<GetCityQuery> {
@@ -11,18 +11,18 @@ export class GetCityQueryHandler implements IQueryHandler<GetCityQuery> {
     private readonly infrastructureService: InfrastructureService,
   ) {}
 
-  async execute(query: GetCityQuery): Promise<any> {
+  async execute(query: GetCityQuery): Promise<TGetCityResponse> {
     const { id, postCode } = query;
     const userRequest = await this.persistenceService.createUserRequest({
       userId: id,
       requestType: "getCity",
-      postCode: postCode,
+      postCode,
     });
 
     const cityData = await this.infrastructureService.getCityData(postCode);
 
     await this.persistenceService.updateUserRequest(userRequest.id, {
-      postCode: postCode,
+      postCode,
       country: cityData.country,
       places: cityData.places.map((place) => ({
         placeName: place.placeName,
@@ -32,7 +32,7 @@ export class GetCityQueryHandler implements IQueryHandler<GetCityQuery> {
     });
 
     const getCityResponse = {
-      postCode: postCode,
+      postCode,
       country: cityData.country,
       places: cityData.places.map((place) => ({
         placeName: place["place name"],

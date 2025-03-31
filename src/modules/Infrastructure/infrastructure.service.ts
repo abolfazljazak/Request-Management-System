@@ -5,7 +5,6 @@ import { TokensPayload } from "./types/payload";
 import { EncryptionService } from "./services/encryption.service";
 import { ZippoResponse } from "./interfaces/zippo.interface";
 import { ZippoService } from "./services/zippo.service";
-import { PostCodeDto } from "@modules/api/dtos/post-code.dto";
 
 @Injectable()
 export class InfrastructureService {
@@ -16,7 +15,7 @@ export class InfrastructureService {
     private readonly zippoService: ZippoService,
   ) {}
 
-  async createAccessToken(payload: TokensPayload) {
+  async createAccessToken(payload: TokensPayload): Promise<string> {
     const accessToken = this.jwtService.sign(payload, {
       secret: this.configService.get("Jwt.accessTokenSecret"),
       expiresIn: this.configService.get("Jwt.expire"),

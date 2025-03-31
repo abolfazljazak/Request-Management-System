@@ -13,7 +13,7 @@ export class UserRequestEntity extends BaseEntity {
   @Column({ nullable: true })
   postCode: string;
 
-  @Column({ type: 'json', nullable: true })
+  @Column({ type: "json", nullable: true })
   responseData: {
     postCode: string;
     country: string;
