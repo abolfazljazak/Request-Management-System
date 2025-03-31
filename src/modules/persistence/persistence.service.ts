@@ -2,12 +2,13 @@ import { ConflictException, Injectable, NotFoundException } from "@nestjs/common
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { ConflictMessage, NotFoundMessage } from "@common/enums/message.enum";
+import { PaginationDto } from "@common/dtos/pagination.dto";
+import { paginationGenerator, paginationSolver } from "@common/utils/pagination.util";
+import { TGetMyRequestResponse } from "@modules/api/types/get-my-request-response.type";
 import { UserEntity } from "./entities/user.entity";
 import { CreateUserDto } from "./dtos/create-user.dto";
 import { UserRequestEntity } from "./entities/user-request.entity";
 import { TResponseData } from "./dtos/update-user-request.type";
-import { PaginationDto } from "@common/dtos/pagination.dto";
-import { paginationGenerator, paginationSolver } from "@common/utils/pagination.util";
 
 @Injectable()
 export class PersistenceService {
@@ -63,7 +64,7 @@ export class PersistenceService {
   async getUserRequests(
     userId: string,
     paginationDto: PaginationDto,
-  ) {
+  ): Promise<TGetMyRequestResponse> {
     const { limit, page, skip } = paginationSolver(paginationDto);
     const [userRequests, count] = await this.userRequestRepository.findAndCount({
       where: { userId },

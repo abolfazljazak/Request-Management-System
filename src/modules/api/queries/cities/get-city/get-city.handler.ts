@@ -25,9 +25,9 @@ export class GetCityQueryHandler implements IQueryHandler<GetCityQuery> {
       postCode,
       country: cityData.country,
       places: cityData.places.map((place) => ({
-        placeName: place.placeName,
+        placeName: place["place name"],
         state: place.state,
-        abbreviation: place.stateAbbreviation,
+        abbreviation: place["state abbreviation"],
       })),
     });
 

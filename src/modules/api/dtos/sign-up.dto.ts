@@ -7,7 +7,7 @@ export class SignUpDto {
     example: "john.doe",
     minLength: 5,
     maxLength: 12,
-    pattern: "^[a-zA-Z0-9!@._]+$"
+    pattern: "^[a-zA-Z0-9!@._]+$",
   })
   @IsNotEmpty({ message: "username is required" })
   @IsString({ message: "username must be a string" })
@@ -21,7 +21,7 @@ export class SignUpDto {
     description: "Password for registration",
     example: "Password123",
     minLength: 8,
-    pattern: "^(?=.*[A-Z])(?=.*\\d).{8,}$"
+    pattern: "^(?=.*[A-Z])(?=.*\\d).{8,}$",
   })
   @IsNotEmpty({ message: "password is required" })
   @IsString({ message: "password must be a string" })
