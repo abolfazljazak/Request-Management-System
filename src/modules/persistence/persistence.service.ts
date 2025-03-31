@@ -46,7 +46,7 @@ export class PersistenceService {
     return user;
   }
 
-  async createUserRequest(data: { userId: string; requestType: string; postCode?: string }) {
+  async createUserRequest(data: { userId: string; requestType: string; postCode?: string }): Promise<UserRequestEntity> {
     const request = this.userRequestRepository.create(data);
     return this.userRequestRepository.save(request);
   }
@@ -55,7 +55,7 @@ export class PersistenceService {
     return this.userRequestRepository.update(id, { responseData });
   }
 
-  async getUserRequests(userId: string) {
+  async getUserRequests(userId: string): Promise<UserRequestEntity[]> {
     return this.userRequestRepository.find({ where: { userId } });
   }
 }

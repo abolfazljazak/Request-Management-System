@@ -11,7 +11,7 @@ export class GetCityQueryHandler implements IQueryHandler<GetCityQuery> {
     private readonly infrastructureService: InfrastructureService,
   ) {}
 
-  async execute(query: GetCityQuery): Promise<any> {
+  async execute(query: GetCityQuery): Promise<TGetCityResponse> {
     const { id, postCode } = query;
     const userRequest = await this.persistenceService.createUserRequest({
       userId: id,

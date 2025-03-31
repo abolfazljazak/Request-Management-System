@@ -16,7 +16,7 @@ export class InfrastructureService {
     private readonly zippoService: ZippoService,
   ) {}
 
-  async createAccessToken(payload: TokensPayload) {
+  async createAccessToken(payload: TokensPayload): Promise<string> {
     const accessToken = this.jwtService.sign(payload, {
       secret: this.configService.get("Jwt.accessTokenSecret"),
       expiresIn: this.configService.get("Jwt.expire"),
