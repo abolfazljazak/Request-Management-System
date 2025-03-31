@@ -1,7 +1,9 @@
 export type TSignUpResponse = {
-    user: {
-      id: string;
-      username: string;
-    };
+    user: TUser;
     accessToken: string;
   };
+  
+type TUser = {
+    id: string;
+    username: string;
+}
