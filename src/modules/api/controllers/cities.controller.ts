@@ -1,10 +1,11 @@
-import { Controller, Get, Param, UseGuards } from "@nestjs/common";
+import { Controller, Get, Param, Query, UseGuards } from "@nestjs/common";
 import { JwtAuthGuard } from "@modules/Infrastructure/auth/jwt-auth.guard";
 import { QueryBus } from "@nestjs/cqrs";
 import { getUser } from "@common/decorators/user.decorator";
 import { GetCityQuery } from "../queries/cities/get-city/get-city.query";
 import { TGetUser } from "../types/get-user.type";
 import { GetMyRequestQuery } from "../queries/cities/get-my-request/get-my-request.query";
+import { PaginationDto } from "@common/dtos/pagination.dto";
 
 @Controller("api/cities")
 export class CitiesController {
@@ -12,8 +13,8 @@ export class CitiesController {
 
   @Get("my-request")
   @UseGuards(JwtAuthGuard)
-  getMyRequest(@getUser() user: TGetUser) {
-    return this.queryBus.execute(new GetMyRequestQuery(user.userId));
+  getMyRequest(@getUser() user: TGetUser, @Query() paginationDto: PaginationDto) {
+    return this.queryBus.execute(new GetMyRequestQuery(user.userId, paginationDto));
   }
 
   @Get(":postCode")

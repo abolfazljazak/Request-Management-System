@@ -7,8 +7,8 @@ import { GetMyRequestQuery } from "./get-my-request.query";
 export class GetMyRequestQueryHandler implements IQueryHandler<GetMyRequestQuery> {
   constructor(private readonly persistenceService: PersistenceService) {}
 
-  async execute(query: GetMyRequestQuery): Promise<UserRequestEntity[]> {
-    const { id } = query;
-    return this.persistenceService.getUserRequests(id);
+  async execute(query: GetMyRequestQuery) {
+    const { id, paginationDto } = query;
+    return this.persistenceService.getUserRequests(id, paginationDto);
   }
 }
