@@ -4,7 +4,6 @@ import { ConfigService } from "@nestjs/config";
 import { firstValueFrom } from "rxjs";
 import { NotFoundMessage, ServerErrorMessage } from "@common/enums/message.enum";
 import { ZippoResponse } from "../interfaces/zippo.interface";
-import { PostCodeDto } from "@modules/api/dtos/post-code.dto";
 
 @Injectable()
 export class ZippoService {

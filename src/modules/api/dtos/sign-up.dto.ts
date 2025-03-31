@@ -3,8 +3,10 @@ import { IsNotEmpty, IsString, Length, Matches, MinLength } from "class-validato
 export class SignUpDto {
   @IsNotEmpty({ message: "username is required" })
   @IsString({ message: "username must be a string" })
-  @Length(5, 12, { message: 'Username must be between 5 and 12 characters' })
-  @Matches(/^[a-zA-Z0-9!@._]+$/, { message: 'Username can only contain letters, numbers, and !@._' })
+  @Length(5, 12, { message: "Username must be between 5 and 12 characters" })
+  @Matches(/^[a-zA-Z0-9!@._]+$/, {
+    message: "Username can only contain letters, numbers, and !@._",
+  })
   username: string;
 
   @IsNotEmpty({ message: "password is required" })

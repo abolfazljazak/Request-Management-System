@@ -5,7 +5,6 @@ import { TokensPayload } from "./types/payload";
 import { EncryptionService } from "./services/encryption.service";
 import { ZippoResponse } from "./interfaces/zippo.interface";
 import { ZippoService } from "./services/zippo.service";
-import { PostCodeDto } from "@modules/api/dtos/post-code.dto";
 
 @Injectable()
 export class InfrastructureService {

@@ -12,6 +12,11 @@ import { GetMyRequestQueryHandler } from "./queries/cities/get-my-request/get-my
 @Module({
   imports: [PersistenceModule, InfrastructureModule, CqrsModule],
   controllers: [UsersController, CitiesController],
-  providers: [SignUpCommandHandler, GetUserQueryHandler, GetCityQueryHandler, GetMyRequestQueryHandler],
+  providers: [
+    SignUpCommandHandler,
+    GetUserQueryHandler,
+    GetCityQueryHandler,
+    GetMyRequestQueryHandler,
+  ],
 })
 export class ApiModule {}

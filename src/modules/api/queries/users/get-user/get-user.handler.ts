@@ -1,8 +1,8 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { PersistenceService } from "@modules/persistence/persistence.service";
 import { InfrastructureService } from "@modules/Infrastructure/infrastructure.service";
-import { GetUserQuery } from "./get-user.query";
 import { TGetUserResponse } from "@modules/api/types/get-user-response.type";
+import { GetUserQuery } from "./get-user.query";
 
 @QueryHandler(GetUserQuery)
 export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {

@@ -14,8 +14,7 @@ export class PersistenceService {
     private readonly userRepository: Repository<UserEntity>,
     @InjectRepository(UserRequestEntity)
     private readonly userRequestRepository: Repository<UserRequestEntity>,
-
-    ) {}
+  ) {}
 
   async userExists(username: string): Promise<UserEntity | null> {
     return this.userRepository.findOne({ where: { username } });
@@ -46,7 +45,11 @@ export class PersistenceService {
     return user;
   }
 
-  async createUserRequest(data: { userId: string; requestType: string; postCode?: string }): Promise<UserRequestEntity> {
+  async createUserRequest(data: {
+    userId: string;
+    requestType: string;
+    postCode?: string;
+  }): Promise<UserRequestEntity> {
     const request = this.userRequestRepository.create(data);
     return this.userRequestRepository.save(request);
   }
