@@ -4,11 +4,11 @@ import { Repository } from "typeorm";
 import { ConflictMessage, NotFoundMessage } from "@common/enums/message.enum";
 import { PaginationDto } from "@common/dtos/pagination.dto";
 import { paginationGenerator, paginationSolver } from "@common/utils/pagination.util";
+import { TGetMyRequestResponse } from "@modules/api/types/get-my-request-response.type";
 import { UserEntity } from "./entities/user.entity";
 import { CreateUserDto } from "./dtos/create-user.dto";
 import { UserRequestEntity } from "./entities/user-request.entity";
 import { TResponseData } from "./dtos/update-user-request.type";
-import { TGetMyRequestResponse } from "@modules/api/types/get-my-request-response.type";
 
 @Injectable()
 export class PersistenceService {
@@ -61,7 +61,10 @@ export class PersistenceService {
     return this.userRequestRepository.update(id, { responseData });
   }
 
-  async getUserRequests(userId: string, paginationDto: PaginationDto): Promise<TGetMyRequestResponse> {
+  async getUserRequests(
+    userId: string,
+    paginationDto: PaginationDto,
+  ): Promise<TGetMyRequestResponse> {
     const { limit, page, skip } = paginationSolver(paginationDto);
     const [userRequests, count] = await this.userRequestRepository.findAndCount({
       where: { userId },

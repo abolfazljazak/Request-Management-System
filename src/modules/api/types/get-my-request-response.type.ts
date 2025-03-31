@@ -9,4 +9,4 @@ export type TPagination = {
 export type TGetMyRequestResponse = {
   pagination: TPagination;
   userRequests: UserRequestEntity[];
-}; 
+};

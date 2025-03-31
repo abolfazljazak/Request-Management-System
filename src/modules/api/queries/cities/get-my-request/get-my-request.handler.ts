@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { PersistenceService } from "@modules/persistence/persistence.service";
-import { GetMyRequestQuery } from "./get-my-request.query";
 import { TGetMyRequestResponse } from "@modules/api/types/get-my-request-response.type";
+import { GetMyRequestQuery } from "./get-my-request.query";
 
 @QueryHandler(GetMyRequestQuery)
 export class GetMyRequestQueryHandler implements IQueryHandler<GetMyRequestQuery> {
