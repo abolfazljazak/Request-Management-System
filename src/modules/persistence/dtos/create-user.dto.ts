@@ -8,8 +8,4 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
   hashPassword: string;
-
-  @IsNotEmpty()
-  @IsString()
-  postCode: string;
 }

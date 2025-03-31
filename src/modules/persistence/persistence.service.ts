@@ -4,24 +4,31 @@ import { Repository } from "typeorm";
 import { ConflictMessage, NotFoundMessage } from "@common/enums/message.enum";
 import { UserEntity } from "./entities/user.entity";
 import { CreateUserDto } from "./dtos/create-user.dto";
+import { UserRequestEntity } from "./entities/user-request.entity";
+import { TResponseData } from "./dtos/update-user-request.type";
 
 @Injectable()
 export class PersistenceService {
-  constructor(@InjectRepository(UserEntity) private userRepository: Repository<UserEntity>) {}
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
+    @InjectRepository(UserRequestEntity)
+    private readonly userRequestRepository: Repository<UserRequestEntity>,
+
+    ) {}
 
   async userExists(username: string): Promise<UserEntity | null> {
     return this.userRepository.findOne({ where: { username } });
   }
 
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
-    const { username, hashPassword, postCode } = createUserDto;
+    const { username, hashPassword } = createUserDto;
 
     const userExists = await this.userExists(username);
     if (userExists) throw new ConflictException(ConflictMessage.UserAlreadyExists);
 
     const user = this.userRepository.create({
       username,
-      postCode,
       password: hashPassword,
     });
     return this.userRepository.save(user);
@@ -37,5 +44,18 @@ export class PersistenceService {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) throw new NotFoundException(NotFoundMessage.UserNotFound);
     return user;
+  }
+
+  async createUserRequest(data: { userId: string; requestType: string; postCode?: string }) {
+    const request = this.userRequestRepository.create(data);
+    return this.userRequestRepository.save(request);
+  }
+
+  async updateUserRequest(id: string, responseData: TResponseData) {
+    return this.userRequestRepository.update(id, { responseData });
+  }
+
+  async getUserRequests(userId: string) {
+    return this.userRequestRepository.find({ where: { userId } });
   }
 }
