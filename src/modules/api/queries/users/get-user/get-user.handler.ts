@@ -13,9 +13,7 @@ export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {
   async execute(query: GetUserQuery) {
     const { id } = query;
     const user = await this.persistenceService.userFindById(id);
-    const { postCode } = user;
     const decodePassword = this.infrastructureService.decryptPassword(user.password);
-    const city = await this.infrastructureService.getCityData({ postCode });
-    return { city, decodePassword };
+    return { id: user.id, username: user.username, password: decodePassword };
   }
 }
