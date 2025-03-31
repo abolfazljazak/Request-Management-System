@@ -4,6 +4,7 @@ import * as dotenv from "dotenv";
 import { ValidationPipe } from "@nestjs/common";
 import { AppModule } from "./modules/app/app.module";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { SwaggerConfigInit } from "@config/swagger.config";
 
 dotenv.config();
 
@@ -19,15 +20,9 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  const config = new DocumentBuilder()
-    .setTitle("User Management System")
-    .setDescription("User Management System API")
-    .setVersion("1.0")
-    .addBearerAuth()
-    .build();
-
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup("api", app, document);
+  
+  // swagger config
+  SwaggerConfigInit(app)
 
   const port = configService.get("App.port");
   await app.listen(process.env.PORT ?? port);
