@@ -12,7 +12,9 @@ import {
   ApiResponse,
   ApiBearerAuth,
   ApiBody,
+  ApiConsumes,
 } from "@nestjs/swagger";
+import { SwaggerConsumes } from "@common/enums/swagger-consumes.enum";
 
 @ApiTags("Users")
 @Controller("api/users")
@@ -32,6 +34,7 @@ export class UsersController {
   @ApiResponse({ status: 409, description: "Conflict - Username already exists" })
   @ApiResponse({ status: 500, description: "Internal server error" })
   @Post("sign-up")
+  @ApiConsumes(SwaggerConsumes.UrlEncoded, SwaggerConsumes.Json)
   signUp(@Body() signUpDto: SignUpDto) {
     const { username, password } = signUpDto;
     return this.commandBus.execute(new SignUpCommand(username, password));
