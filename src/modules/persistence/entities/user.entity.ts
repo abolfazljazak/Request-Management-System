@@ -9,7 +9,4 @@ export class UserEntity extends BaseEntity {
 
   @Column({ type: "varchar" })
   password: string;
-
-  @Column({ type: "varchar" })
-  postCode: string;
 }
