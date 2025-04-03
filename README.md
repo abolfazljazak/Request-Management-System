@@ -1,6 +1,6 @@
-# CityFinder API 🌍
+# ZipCityAPI 🌍
 
-Welcome to **CityFinder API**, a powerful and modern RESTful API built with **NestJS** to manage user authentication and fetch city data based on postal codes. This project leverages the **CQRS** pattern, **TypeORM**, and **Zippopotamus API** to provide a scalable and maintainable solution for user management and city data retrieval. Whether you're a developer looking to integrate city data into your app or just exploring a well-structured backend, this project has got you covered! 🚀
+Welcome to **ZipCityAPI**, a powerful and modern RESTful API built with **NestJS** to manage user authentication and fetch city data based on postal codes. This project leverages the **CQRS** pattern, **TypeORM**, and **Zippopotamus API** to provide a scalable and maintainable solution for user management and city data retrieval. Whether you're a developer looking to integrate city data into your app or just exploring a well-structured backend, this project has got you covered! 🚀
 
 ---
 
@@ -40,16 +40,3 @@ Welcome to **CityFinder API**, a powerful and modern RESTful API built with **Ne
 - **Error Handling** 🚨: Custom Exception Filters
 
 ---
-
-## 📋 API Endpoints
-
-### Authentication 🔐
-
-- **POST /api/users/sign-up**  
-  Register a new user.  
-  - **Body**:  
-    ```json
-    {
-      "username": "john_doe123",
-      "password": "Pass123"
-    }
